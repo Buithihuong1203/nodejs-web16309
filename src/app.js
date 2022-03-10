@@ -1,27 +1,32 @@
 //const http = require('http');
-const express = require('express');
 //const res = require('express/lib/response');
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import productRote from '../routers/product';
+
+
 const app = express();
+app.use(cors())
+app.use(morgan('tiny'))
+app.use(express.json())
+app.use(productRote);
 
 //middleware
+//const check = (req, res, next) => {
+//    const status = true;
+//    if (status) {
+//        console.log("Chào sếp");
+//        next();
 
-const check = (req, res, next) => {
-    const status = true;
-    if (status) {
-        console.log("Chào sếp");
-        next();
+//    } else {
+//        console.log('Không có quyền truy cập');
+//    }
+//}
 
-    } else {
-        console.log('Không có quyền truy cập');
-    }
-}
-app.get('/api/products', check, { req, res } => {
-    const products = [
-        { id: 1, name: "Product A" },
-        { id: 1, name: "Product B" }
-    ];
-    res.json(products);
-})
+
+//app.unsubscribe(productRote);
+
 //app.use(check)
 //app.use((req, res) => {
 //   console.log('Bước 2');
@@ -49,6 +54,6 @@ app.get('/api/products', check, { req, res } => {
 //});
 
 const PORT = 3001;
-server.listen(PORT, () => {
-    console.log("Server is running port ", PORT);
+app.listen(PORT, () => {
+    console.log("Server is running port", PORT);
 })
