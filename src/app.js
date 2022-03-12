@@ -3,14 +3,27 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import mongoose from 'mongoose';
+
 import productRote from '../routers/product';
 
 
 const app = express();
+
+//middleware
 app.use(cors())
 app.use(morgan('tiny'))
 app.use(express.json())
+
+
+//router
 app.use("/api", productRote);
+
+
+//connect 
+mongoose.connect('mongodb://localhost:27017/we16309')
+    .then(() => console.log("Kết nối db thành công"))
+    .catch((error) => console.log(error));
 
 //middleware
 //const check = (req, res, next) => {
@@ -53,7 +66,7 @@ app.use("/api", productRote);
 //  }
 //});
 
-const PORT = 3001;
+const PORT = 3000;
 app.listen(PORT, () => {
     console.log("Server is running port", PORT);
 })
