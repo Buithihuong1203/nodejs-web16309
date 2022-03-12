@@ -10,7 +10,7 @@ const app = express();
 app.use(cors())
 app.use(morgan('tiny'))
 app.use(express.json())
-app.use(productRote);
+app.use("/api", productRote);
 
 //middleware
 //const check = (req, res, next) => {
