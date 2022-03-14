@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 
 import productRote from '../routers/product';
+import postRote from '../routers/post';
 
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json())
 
 //router
 app.use("/api", productRote);
+app.use("/api", postRote);
 
 
 //connect 
@@ -66,7 +68,7 @@ mongoose.connect('mongodb://localhost:27017/we16309')
 //  }
 //});
 
-const PORT = 3000;
+const PORT = 3001;
 app.listen(PORT, () => {
     console.log("Server is running port", PORT);
 })
