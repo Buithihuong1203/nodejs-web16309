@@ -1,7 +1,7 @@
 import Category from '../models/category';
 import Product from '../models/product';
 
-export const creat = async (req, res) => {
+export const create = async (req, res) => {
     try {
         const category = await new Category(req.body).save()
         res.json(category);

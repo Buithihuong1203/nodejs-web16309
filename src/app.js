@@ -8,6 +8,7 @@ import mongoose from 'mongoose';
 import productRoute from '../routers/product';
 import postRoute from '../routers/post';
 import userRoute from '../routers/user';
+import categoryRoute from '../routers/category';
 
 
 const app = express();
@@ -21,7 +22,8 @@ app.use(express.json())
 //router
 app.use("/api", productRoute);
 app.use("/api", postRoute);
-app.use("/", userRoute);
+app.use("/api", userRoute);
+app.use("/api", categoryRoute);
 
 
 //connect 
