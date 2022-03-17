@@ -5,8 +5,9 @@ import cors from 'cors';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 
-import productRote from '../routers/product';
-import postRote from '../routers/post';
+import productRoute from '../routers/product';
+import postRoute from '../routers/post';
+import userRoute from '../routers/user';
 
 
 const app = express();
@@ -18,8 +19,9 @@ app.use(express.json())
 
 
 //router
-app.use("/api", productRote);
-app.use("/api", postRote);
+app.use("/api", productRoute);
+app.use("/api", postRoute);
+app.use("/", userRoute);
 
 
 //connect 

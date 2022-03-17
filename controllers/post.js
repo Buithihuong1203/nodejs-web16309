@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Post = mongoose.model('Post', { name: String });
 
 //api thêm bài viết
-export const creat = async (req, res) => {
+export const create = async (req, res) => {
     try {
         const post = await new Post(req.body).save();
         res.json(post)
