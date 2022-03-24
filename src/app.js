@@ -4,11 +4,10 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
-
 import productRoute from '../routers/product';
 import postRoute from '../routers/post';
-import userRoute from '../routers/user';
 import categoryRoute from '../routers/category';
+import authRoute from '../routers/auth';
 
 
 const app = express();
@@ -22,8 +21,8 @@ app.use(express.json())
 //router
 app.use("/api", productRoute);
 app.use("/api", postRoute);
-app.use("/api", userRoute);
 app.use("/api", categoryRoute);
+app.use("/api", authRoute);
 
 
 //connect 
@@ -72,7 +71,7 @@ mongoose.connect('mongodb://localhost:27017/we16309')
 //  }
 //});
 
-const PORT = 3001;
+const PORT = 3002;
 app.listen(PORT, () => {
     console.log("Server is running port", PORT);
 })
