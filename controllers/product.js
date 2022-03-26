@@ -5,8 +5,10 @@ import Product from "../models/product";
 
 // API thêm sản phẩm
 export const create = async (req, res) => {
+    console.log(req.body);
     try {
         const product = await new Product(req.body).save();
+        console.log('product', product);
         res.json(product)
     } catch (error) {
         res.status(400).json({
@@ -17,7 +19,7 @@ export const create = async (req, res) => {
 // API list sản phẩm
 export const list = async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find().sort({ createAt: -1 });
         res.json(products);
     } catch (error) {
         res.status(400).json({

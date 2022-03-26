@@ -1,4 +1,5 @@
 import User from "../models/user";
+import jwt from 'jsonwebtoken';
 
 export const signup = async (req, res) => {
     const { email, name, password } = req.body
@@ -6,7 +7,7 @@ export const signup = async (req, res) => {
         const existUser = await User.findOne({ email }).exec();
         if (existUser) {
             res.json({
-                message: " Email không tồn tại"
+                message: " Email đã tồn tại"
             })
         };
         const user = await new User({ email, name, password }).save();
@@ -37,7 +38,11 @@ export const signin = async (req, res) => {
                 message: "Sai mật khẩu"
             })
         }
+
+        const token = jwt.sign({ _id: user._id }, "123456", { expiresIn: 60 * 60 })
+
         res.json({
+            token,
             user: {
                 _id: user._id,
                 email: user.email,
