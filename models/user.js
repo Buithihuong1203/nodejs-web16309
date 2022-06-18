@@ -1,6 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 import { createHmac } from 'crypto';
 const userSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -15,6 +19,10 @@ const userSchema = new Schema({
     role: {
         type: Number,
         default: 0
+    },
+    status: {
+        type: String,
+
     }
 }, { timestamps: true });
 userSchema.methods = {

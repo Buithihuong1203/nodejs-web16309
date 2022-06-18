@@ -3,10 +3,10 @@ import { create, list, read, remove, update } from "../controllers/category";
 
 const router = Router();
 
-router.post("/category", create);
+router.post("/categories", create);
 router.get("/categories", list);
-router.get("/category/:id", read);
-router.delete("/category/:id", remove);
-router.put("/category/:id", update);
+router.get("/categories/:id", read);
+router.delete("/categories/:id", remove);
+router.put("/categories/:id", update);
 
 export default router;

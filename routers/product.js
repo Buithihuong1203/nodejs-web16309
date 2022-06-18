@@ -6,11 +6,11 @@ import { checkAuth, isAuth, requiredSignin } from '../middlewares/checkAuth'
 const router = Router();
 
 //resful API
-router.get('/products', checkAuth, list);
-router.get('/product/:id', checkAuth, read);
+router.get('/products', list);
+router.get('/products/:id', read);
 router.post('/products', create);
-router.delete('/product/:id', checkAuth, remove);
-router.patch("/product/:id", checkAuth, update);
+router.delete('/products/:id', remove);
+router.patch("/products/:id", update);
 
 router.param("userId", userById);
 

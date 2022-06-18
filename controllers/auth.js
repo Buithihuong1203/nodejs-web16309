@@ -1,7 +1,7 @@
 import User from "../models/user";
 import jwt from 'jsonwebtoken';
 
-export const signup = async (req, res) => {
+export const signup = async(req, res) => {
     const { email, name, password } = req.body
     try {
         const existUser = await User.findOne({ email }).exec();
@@ -24,7 +24,7 @@ export const signup = async (req, res) => {
     }
 
 }
-export const signin = async (req, res) => {
+export const signin = async(req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email }).exec();
@@ -54,4 +54,13 @@ export const signin = async (req, res) => {
     }
 
 }
-
+export const list = async(req, res) => {
+    try {
+        const user = await User.find().sort({ createAt: -1 });
+        res.json(user);
+    } catch (error) {
+        res.status(400).json({
+            message: "Lỗi không tìm được sản phẩm"
+        })
+    }
+}

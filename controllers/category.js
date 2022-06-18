@@ -1,7 +1,7 @@
 import Category from '../models/category';
 import Product from '../models/product';
 
-export const create = async (req, res) => {
+export const create = async(req, res) => {
     try {
         const category = await new Category(req.body).save()
         res.json(category);
@@ -11,14 +11,14 @@ export const create = async (req, res) => {
 }
 
 
-export const read = async (req, res) => {
+export const read = async(req, res) => {
     const condition = { _id: req.params.id }
     try {
         const category = await Category.findOne(condition).exec();
-        const products = await Product.find({ category }).select("-category").exec();
+        //const products = await Product.find({ category }).select("-category").exec();
         res.json({
             category,
-            products
+            //products
         })
 
     } catch (error) {
@@ -26,7 +26,7 @@ export const read = async (req, res) => {
     }
 }
 
-export const list = async (req, res) => {
+export const list = async(req, res) => {
     try {
         const categories = await Category.find().exec();
         res.json(categories)
@@ -36,7 +36,7 @@ export const list = async (req, res) => {
     }
 }
 
-export const remove = async (req, res) => {
+export const remove = async(req, res) => {
     const condition = { _id: req.params.id };
     try {
         const categories = await Category.findByIdAndDelete(condition).exec();
@@ -46,7 +46,7 @@ export const remove = async (req, res) => {
     }
 }
 
-export const update = async (req, res) => {
+export const update = async(req, res) => {
     const condition = { _id: req.params.id };
     const document = req.body;
     const options = { new: true }
